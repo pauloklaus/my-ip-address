@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <!--
+	use http request to retrive a client IP
+	GET /refresh
+
+	clone project from:
+	https://github.com/pauloklaus/my-ip-address
+	-->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My IP Address</title>
+    <style>
+      * {
+        background-color: black;
+        color: lightgray;
+        font-family: "Courier New", Courier, monospace;
+      }
+      body {
+        text-align: center;
+      }
+      #ip {
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body onmousedown="copyToClipboard()">
+    <h1 id="ip"></h1>
+    <p id="message"></p>
+
+    <script>
+      let toastTimeout;
+
+      function toast(newMessage) {
+        const message = document.getElementById("message");
+        message.innerText = newMessage;
+
+        if (toastTimeout) {
+          clearTimeout(toastTimeout);
+        }
+
+        toastTimeout = setTimeout(() => {
+          message.innerText = "";
+        }, 1_000);
+      }
+
+      function setIpAddress(ip) {
+        const h1 = document.getElementById("ip");
+        h1.textContent = ip;
+      }
+
+      function copyToClipboard() {
+        const h1 = document.getElementById("ip");
+        navigator.clipboard.writeText(h1.innerText);
+        toast("copied!");
+      }
+
+      fetch("/refresh")
+        .then((resp) => resp.text())
+        .then((text) => setIpAddress(text));
+    </script>
+  </body>
+</html>
