@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "editorconfig.editorconfig",
+    "donjayamanne.githistory",
+    "eamodio.gitlens",
+    "dbaeumer.vscode-eslint",
+    "codeandstuff.package-json-upgrade",
+    "esbenp.prettier-vscode"
+  ]
+}
