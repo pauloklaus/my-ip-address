@@ -15,7 +15,7 @@
     "format": "prettier --write --experimental-cli src/"
   },
   "dependencies": {
-    "hono": "^4.11.1"
+    "hono": "^4.11.7"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.2",
